@@ -44,6 +44,12 @@ if __name__ == '__main__':
         converter.convert(json_content, root_entity)
         swagger_file_content['definitions'] = converter.swagger_definitions
 
-    # writes the new definitions to swagger file
-    with open(swagger_file_path, 'w+') as newFile:
-        yaml.dump(swagger_file_content, newFile, default_flow_style=False, sort_keys=False)
+    #changes
+    with open(prepend.yaml, 'r') as prepend_file:
+        prepend_text = json.loads(open('.json').read())
+    with open(swagger_file_path, 'a+') as newFile:
+         newFile.write('Jsonfiles\n')
+         #something similar with prepend_text
+         yalm.dump(swagger_file_content, newFile, default_flow_style=False, sort_keys=False)
+
+
