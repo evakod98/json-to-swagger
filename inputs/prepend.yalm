@@ -1,0 +1,30 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: "Swagger Ferryhopper"
+schemes:
+- "https"
+paths:
+  /booking:
+    get:
+      tags:
+      - "pet"
+      summary: "Get a booking"
+      description: ""
+      operationId: "getBooking"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Pet object that needs to be added to the store"
+        required: true
+        schema:
+          $ref: "#/definitions/Booking"
+      responses:
+        "405":
+          description: "Invalid input"

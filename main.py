@@ -15,7 +15,7 @@ if __name__ == '__main__':
     verbose = True if "-v" in opts else False
 
     json_file_path = fr'{args[0]}'
-    root_entity = args[1] if len(args) > 1 else 'RootEntity'
+    #root_entity = args[1] if len(args) > 1 else 'RootEntity'
     swagger_file_path = args[2] if len(args) > 2 else fr'{args[0].replace("json", "swagger")}.yaml'
 
     swagger_file_content = {}
@@ -38,22 +38,42 @@ if __name__ == '__main__':
     # creates the converter instance
     converter = JsonToSwaggerConverter(swagger_definitions, verbose)
 
-    input_file = os.listdir(json_file_path)
+    input_files = os.listdir(json_file_path)
+
     for f in input_files:
-        basename = f.spit('.')[0]
+
+        basename = f.split('.')[0]
 
         json_file_full_path = os.path.join(json_file_path, f)
 
         print(basename)
-        print(json_file_path)
-        print('----------------------------------')
+        print(json_file_full_path)
 
-        #opens the json file to generate new swagger definitions
+
+
+         # opens the json file to generate new swagger definitions
         with open(json_file_path) as json_path:
 
             json_content = json.load(json_input_path)
             converter.convert(json_content, root_entity)
-            swagger_file_content['definitions'] = converter.swagger_definitions
+            swagger_file_content['defenitions'] = converter.swagger_defenitions
+
+
+            basename = f.split('.')[0]
+            json_file_full_path = os.path.join(json_file_path, basename)
+
+
+            #first changes at main program
+           
+            # with open(prepend.yalm, 'r') as prepend_file:
+            #    prepend_text = json.loads(open('.json').read())
+            
+
+            with open(swagger_file_path, 'a+') as newFile:
+                yalm.dump(swagger_file_content, newFile, default_flow_style=False, sort_keys=False)
+
+
+                   
 
 
 
