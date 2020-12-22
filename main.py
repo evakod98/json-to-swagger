@@ -5,8 +5,10 @@ import os
 
 from json_to_swagger import JsonToSwaggerConverter
 
+
+
 if __name__ == '__main__':
-    opts = [opt for opt in sys.argv[1:] if opt.startswith("-")]
+    opts = [opt for opt in sys.argv[1:] if opt.startswith("-")]      # Parse cmd arguments 
     args = [arg for arg in sys.argv[1:] if not arg.startswith("-")]
 
     if len(args) == 0:
@@ -16,7 +18,7 @@ if __name__ == '__main__':
 
     json_file_path = fr'{args[0]}'
     #root_entity = args[1] if len(args) > 1 else 'RootEntity'
-    swagger_file_path = args[2] if len(args) > 2 else fr'{args[0].replace("json", "swagger")}.yaml'
+    swagger_file_path = args[1] if len(args) > 1 else fr'{args[0].replace("json", "swagger")}.yaml'
 
     swagger_file_content = {}
     swagger_definitions = {}
@@ -39,6 +41,22 @@ if __name__ == '__main__':
     converter = JsonToSwaggerConverter(swagger_definitions, verbose)
 
     input_files = os.listdir(json_file_path)
+    ''' 
+    input_path = 'inputs'
+    
+    files = os.listdir(input_path)
+    
+    for f in files:
+       
+        basename = f.split('.')[0]
+        print(basename)
+        
+        json_input_path = os.path.join(input_path, f)
+        print(json_input_path)
+       
+        print('------------')
+    '''
+
 
     for f in input_files:
 
@@ -50,6 +68,7 @@ if __name__ == '__main__':
         print(json_file_full_path)
 
 
+        rootdir = 'C:\\User\\kodog\\project_swagger\\json_to_swagger\\inputs\\'
 
          # opens the json file to generate new swagger definitions
         with open(json_file_path) as json_path:
