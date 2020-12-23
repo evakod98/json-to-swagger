@@ -1,4 +1,4 @@
-import os 
+
 
 ''''with os.scandir('inputs/') as entries:
     for entry in entries:
@@ -18,7 +18,17 @@ for dirpath, dirnames, files in os.walk('.'):
     for file_name in files:
         print(file_name)'''
 
-for dirpath, dirnames, files in os.walk('.', topdown=False):
+'''for dirpath, dirnames, files in os.walk('.', topdown=False):
     print(f'Found directory: {dirpath}')
     for file_name in files:
-        print(file_name)
+        print(file_name) '''
+
+import os
+startpath = "inputs"
+corpus_path = sorted([os.path.join("d:" , "inputs", directories) for directories in os.listdir(startpath)])
+
+filenames = []
+for items in corpus_path:
+    print (items)
+    path = [os.path.join(corpus_path, fn) for fn in os.listdir(items)]
+    print  (path)

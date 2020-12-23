@@ -68,7 +68,17 @@ if __name__ == '__main__':
         print(json_file_full_path)
 
 
-        rootdir = 'C:\\User\\kodog\\project_swagger\\json_to_swagger\\inputs\\'
+    # get into directory 
+
+    startpath = "inputs"
+    corpus_path = sorted([os.path.join("d:" , "inputs", directories) for directories in os.listdir(startpath)])
+
+    filenames = []
+    for items in corpus_path:
+        print (items)
+        path = [os.path.join(corpus_path, fn) for fn in os.listdir(items)]
+        print  (path)
+
 
          # opens the json file to generate new swagger definitions
         with open(json_file_path) as json_path:
